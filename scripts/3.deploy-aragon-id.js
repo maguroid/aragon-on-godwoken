@@ -15,7 +15,10 @@ async function main() {
   );
   const ens = await ethers.getContractAt("AbstractENS", ensAddr);
 
-  const publicResolver = await eth.resolver(namehash("resolver.eth"));
+  const publicResolver = await ens.resolver(namehash("resolver.eth"));
+
+  // ethers method was unsupported on this network
+  // const publicResolver = await deployer.provider.getResolver("resolver.eth");
 
   const aragonID = await FIFSResolvingRegistrar.deploy(
     ensAddr,
